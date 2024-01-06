@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>org.playwright</groupId>
-        <artifactId>pywrightool</artifactId>
+        <artifactId>playwright-for-java</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

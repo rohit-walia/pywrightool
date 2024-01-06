@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.playwright</groupId>
-    <artifactId>pywrightool</artifactId>
+    <artifactId>playwright-for-java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>pywrightool</name>
-    <description>Playwright Tool</description>
+    <name>playwright-for-java</name>
+    <description>Playwright For Java</description>
 
     <modules>
         <module>playwright</module>
