@@ -47,6 +47,7 @@
         <logback.version>1.4.7</logback.version>
         <assertj.core.version>3.24.2</assertj.core.version>
         <assertj.joda.version>2.2.0</assertj.joda.version>
+        <jackson.version>2.16.1</jackson.version>
     </properties>
 
     <build>
