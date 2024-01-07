@@ -6,7 +6,6 @@ import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.nio.file.Paths;
 
 @Value
