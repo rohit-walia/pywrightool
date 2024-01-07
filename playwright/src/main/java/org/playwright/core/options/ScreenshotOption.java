@@ -2,8 +2,6 @@ package org.playwright.core.options;
 
 import com.microsoft.playwright.Page;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
@@ -19,6 +17,7 @@ public class ScreenshotOption implements IOption<Page.ScreenshotOptions> {
   @Builder.Default
   boolean fullPage = true;
 
+  @Override
   public Page.ScreenshotOptions forPlaywright() {
     return new Page.ScreenshotOptions()
         .setPath(path)

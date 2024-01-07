@@ -101,8 +101,8 @@ class PlaywrightResourceFactoryTest {
 
     Assertions.assertNotEquals(originalBrowserContext, newBrowserContext, "When multiple BrowserContext are created"
         + "by invoking PlaywrightResourceFactory#create, each BrowserContext should be a new instance.");
-    Assertions.assertNotEquals(origBrowserContextOption, newBrowserContextOption, "When multiple BrowserContext " +
-        "is created, then the original BrowserContextOption should be overridden by the new BrowserContextOption.");
+    Assertions.assertNotEquals(origBrowserContextOption, newBrowserContextOption, "When multiple BrowserContext "
+        + "is created, then the original BrowserContextOption should be overridden by the new BrowserContextOption.");
     Assertions.assertNotEquals(origTracingStartOption, newTraceStartOption, "When multiple BrowserContext is "
         + "created, then the original TracingStartOption should be overridden by the new TracingStartOption.");
 

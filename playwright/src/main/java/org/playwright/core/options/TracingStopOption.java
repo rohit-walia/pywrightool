@@ -18,6 +18,7 @@ public class TracingStopOption implements IOption<Tracing.StopOptions> {
   @Builder.Default
   Path tracingPath = Paths.get("target/trace/default.zip");
 
+  @Override
   public Tracing.StopOptions forPlaywright() {
     log.info("TracingStopOptions: trace file recorded in directory: {}", tracingPath);
     return new Tracing.StopOptions().setPath(tracingPath);

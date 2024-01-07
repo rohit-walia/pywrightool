@@ -3,8 +3,6 @@ package org.playwright.core.options;
 
 import com.microsoft.playwright.Tracing;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
@@ -21,6 +19,7 @@ public class TracingStartOption implements IOption<Tracing.StartOptions> {
   @Builder.Default
   boolean enableSource = false;
 
+  @Override
   public Tracing.StartOptions forPlaywright() {
     return new Tracing.StartOptions()
         .setScreenshots(enableScreenshot)

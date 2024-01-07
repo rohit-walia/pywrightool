@@ -5,7 +5,8 @@ import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.nio.file.Paths;
 
 @Value
@@ -18,6 +19,7 @@ public class BrowserContextOption implements IOption<Browser.NewContextOptions> 
   @Builder.Default
   Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
+  @Override
   public Browser.NewContextOptions forPlaywright() {
     return new Browser.NewContextOptions()
         .setViewportSize(dimension.width, dimension.height)
