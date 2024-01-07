@@ -1,32 +1,23 @@
-package org.playwright.options;
+package org.playwright.core.options;
 
 import com.microsoft.playwright.Browser;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.nio.file.Paths;
 
-@Setter
-@Getter
+@Value
 @Builder(toBuilder = true)
 @Jacksonized
-public class BrowserContextOption implements IOption {
+public class BrowserContextOption implements IOption<Browser.NewContextOptions> {
   @Builder.Default
-  private String recordVideoDir = "target/video/";
+  String recordVideoDir = "target/video/";
 
   @Builder.Default
-  private Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+  Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
-
-  /**
-   * Converts this builder Browser.NewContextOptions instance to Playwright Browser.NewContextOptions object.
-   *
-   * @return Browser.NewContextOptions
-   */
   public Browser.NewContextOptions forPlaywright() {
     return new Browser.NewContextOptions()
         .setViewportSize(dimension.width, dimension.height)

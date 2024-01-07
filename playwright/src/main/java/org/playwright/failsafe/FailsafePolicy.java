@@ -4,12 +4,13 @@ package org.playwright.failsafe;
 import dev.failsafe.Fallback;
 import dev.failsafe.RetryPolicy;
 import lombok.extern.slf4j.Slf4j;
+import org.playwright.common.Timeout;
 
 import java.time.Duration;
 
 @Slf4j
 public class FailsafePolicy {
-  public static final int DEFAULT_DELAY_SECONDS = 1;
+  public static final int DEFAULT_DELAY_SECONDS = Timeout.ONE_SECOND.getSecond();
   public static int DEFAULT_MAX_ATTEMPTS = 3;
 
   public RetryPolicy<Object> getDefaultRetryPolicy() {
@@ -34,7 +35,7 @@ public class FailsafePolicy {
         .withMaxRetries(maxAttempts)
         .onRetry(e -> log.info("Failed on #{} retry! Error: {}. Retrying...", e.getAttemptCount(),
             e.getLastException().getMessage().lines().toList().get(1)))
-        .onRetriesExceeded(e -> log.warn("Max attempts reached.", e.getException()))
+        .onRetriesExceeded(e -> log.error("Max attempts reached.", e.getException()))
         .build();
   }
 

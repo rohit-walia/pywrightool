@@ -1,27 +1,22 @@
-package org.playwright.options;
+package org.playwright.core.options;
 
 import com.microsoft.playwright.Playwright;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.Map;
 
-@Setter
-@Getter
+@Value
 @Builder(toBuilder = true)
 @Jacksonized
-public class PlaywrightOption implements IOption {
+public class PlaywrightOption implements IOption<Playwright.CreateOptions> {
   @Builder.Default
-  private boolean enableDebugMode = false;
+  boolean enableDebugMode = false;
 
-
-  /**
-   * Converts this builder PlaywrightOption instance to Playwright Playwright.CreateOptions object.
-   *
-   * @return Playwright.CreateOptions
-   */
   public Playwright.CreateOptions forPlaywright() {
     Playwright.CreateOptions options = new Playwright.CreateOptions();
 

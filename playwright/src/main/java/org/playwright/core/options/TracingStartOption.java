@@ -1,31 +1,26 @@
-package org.playwright.options;
+package org.playwright.core.options;
 
 
 import com.microsoft.playwright.Tracing;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
-@Setter
-@Getter
+@Value
 @Builder(toBuilder = true)
 @Jacksonized
-public class TracingStartOption implements IOption {
+public class TracingStartOption implements IOption<Tracing.StartOptions> {
   @Builder.Default
-  private boolean enableScreenshot = true;
+  boolean enableScreenshot = true;
 
   @Builder.Default
-  private boolean enableSnapshot = true;
+  boolean enableSnapshot = true;
 
   @Builder.Default
-  private boolean enableSource = false;
+  boolean enableSource = false;
 
-  /**
-   * Converts this builder TracingStartOption instance to Playwright Tracing.StartOptions object.
-   *
-   * @return Tracing.StartOptions
-   */
   public Tracing.StartOptions forPlaywright() {
     return new Tracing.StartOptions()
         .setScreenshots(enableScreenshot)

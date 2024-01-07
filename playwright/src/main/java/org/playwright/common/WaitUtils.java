@@ -9,12 +9,17 @@ import org.playwright.failsafe.FailsafeRetry;
 
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Utility class for common wait functions.
+ */
 @Slf4j
 public class WaitUtils {
 
   /**
    * Wait for all page load states: onLoad, domContentLoad, and network. This function is wrapped
-   * with Failsafe, so it will never halt execution.
+   * with Failsafe, so it will never halt execution. If there is an exception while waiting for
+   * load states, it will be logged and execution will continue.
+   *
    * <pre>
    * "load" - wait for the load event to be fired.
    * "domcontentloaded" - wait for the DOMContentLoaded event to be fired.
@@ -57,7 +62,7 @@ public class WaitUtils {
     try {
       responseText.set(response.text());
     } catch (Exception e) {
-      log.debug("Absorbing potential expected exception in waitForResponseOnNavigation function.");
+      log.warn("Absorbing potential expected exception in waitForResponseOnNavigation function.");
     }
     return responseText.get();
   }

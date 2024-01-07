@@ -1,33 +1,27 @@
-package org.playwright.options;
+package org.playwright.core.options;
 
 import com.microsoft.playwright.BrowserType;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
 
-@Setter
-@Getter
+@Value
 @Builder(toBuilder = true)
 @Jacksonized
-public class BrowserLaunchOption implements IOption {
+public class BrowserLaunchOption implements IOption<BrowserType.LaunchOptions> {
   @Builder.Default
-  private boolean headless = false;
+  boolean headless = false;
 
   @Builder.Default
-  private double slowmo = 300;
+  double slowmo = 300;
 
   @Builder.Default
-  private String browser = "chrome";
+  String browser = "chrome";
 
   @Builder.Default
-  private double browserStartTimeout = 30000;
+  double browserStartTimeout = 30000;
 
-  /**
-   * Converts this builder BrowserLaunchOption instance to Playwright BrowserType.LaunchOptions object.
-   *
-   * @return Page.ScreenshotOptions
-   */
+  @Override
   public BrowserType.LaunchOptions forPlaywright() {
     BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions()
         .setHeadless(headless)

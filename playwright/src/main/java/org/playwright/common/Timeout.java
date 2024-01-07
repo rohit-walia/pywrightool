@@ -2,6 +2,9 @@ package org.playwright.common;
 
 import lombok.Getter;
 
+/**
+ * General timeout constants.
+ */
 @Getter
 public enum Timeout {
   ONE_SECOND(1000, 1),
