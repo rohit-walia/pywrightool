@@ -17,7 +17,7 @@ public class BrowserContextOption implements IOption<Browser.NewContextOptions> 
   String recordVideoDir = "target/video/";
 
   @Builder.Default
-  Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+  Dimension dimension = new Dimension(1920, 1080);
 
   @Override
   public Browser.NewContextOptions forPlaywright() {

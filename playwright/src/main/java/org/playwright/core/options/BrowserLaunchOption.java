@@ -10,7 +10,7 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 public class BrowserLaunchOption implements IOption<BrowserType.LaunchOptions> {
   @Builder.Default
-  boolean headless = false;
+  boolean headless = true;
 
   @Builder.Default
   double slowmo = 300;
