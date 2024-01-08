@@ -4,23 +4,23 @@
 # This workflow uses actions that are not certified by GitHub. They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support documentation.
 
-name: CI/CD Pipeline - Build and Test
+name: CI/CD Pipeline - Publish
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  release:
+    types: [created]
 
 jobs:
-  build:
-    # Using GitHub hosted Linux runner w/ 2CPUs, 7GB RAM, 14GB SSD
+  publish:
+    needs: build
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    permissions:
+      contents: read
+      packages: write
 
+    steps:
+      - uses: actions/checkout@v4
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -28,12 +28,10 @@ jobs:
           distribution: 'zulu'
           cache: maven
 
-      - name: Build and test
-        run: mvn --batch-mode package -P FullBuild
+      - name: Build and package
+        run: mvn -B package -P FastBuild
 
-      - run: mkdir staging && cp target/*.jar staging
-      - name: Package an upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: Package
-          path: staging
+      - name: Publish to GitHub Packages
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
