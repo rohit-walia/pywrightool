@@ -7,10 +7,6 @@
 name: CI/CD Pipeline - Publish
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   release:
     types: [created]
 
@@ -32,9 +28,9 @@ jobs:
           cache: maven
 
       - name: Build and package
-        run: mvn -B package -P FastBuild
+        run: mvn --batch-mode package -pl playwright -am -P FullBuild
 
       - name: Publish to GitHub Packages
-        run: cd playwright && mvn --batch-mode deploy
+        run: mvn --batch-mode deploy -pl playwright -am -P FastBuild
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
