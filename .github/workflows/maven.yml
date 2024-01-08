@@ -31,9 +31,9 @@ jobs:
       - name: Build and test
         run: mvn --batch-mode package -P FullBuild
 
-      - run: mkdir staging && cp playwright/target/*.jar staging
+      - run: mkdir artifacts
       - name: Package an upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Package
-          path: staging
+          name: Artifacts
+          path: playwright/target/*.jar
