@@ -35,6 +35,6 @@ jobs:
         run: mvn -B package -P FastBuild
 
       - name: Publish to GitHub Packages
-        run: mvn --batch-mode deploy
+        run: cd playwright && mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
